@@ -1,0 +1,35 @@
+{% extends 'layout.html' %}
+{% load static %}
+
+
+{% block title %}{{ quest.title }}{% endblock %}
+
+{% block content %}
+	<div class='features'>
+		<p align='justify'>{{ quest.text }}</p>
+		<p align='left'>Начало {{ quest.start }}</p>
+		<p align='left'>Конец {{ quest.finish }}</p>
+		<form action='/receive_record' method="post">
+			{% csrf_token %}
+			<input type='text' align='center' name='user_id' placeholder='Введите идентификатор' class='form-control' style="width: 400px; margin-left: 188px;" /></br>
+			{% for element in list_of_questions %}
+				<h4 align='left' style="margin-left: 188px;">{{ element.0 }}</h4>
+				{% if not element.1 %}
+					<br align='center'><input type='text' placeholder='Ваш ответ' class='form-control' style="width: 400px; margin-left: 188px; box-sizing: border-box;" /></br></br>
+				{% else %}
+					{% for a in element.1 %}
+						{% if element.0.question_category == 'CS' %}
+							<p align='left'><input type="checkbox" align='left' name="{{ element.1 }}">{{ a }}</input></p>
+						{% endif %}
+						{% if element.0.question_category == 'MC' %}
+							<p align='left'><input type="radio" align='left' name="{{ element.1 }}">{{ a }}</input></p>
+						{% endif %}
+					{% endfor %}
+				{% endif %}
+			{% endfor %}
+			<p><input type="submit"></p>
+		</form>
+		<a href="{% url 'home' %}" class="btn btn-success" type='submit'>Отправить</a>
+		<a href="{% url 'home' %}" class="btn btn-warning">На главную</a>
+	</div>
+{% endblock %}

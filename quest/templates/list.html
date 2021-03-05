@@ -1,0 +1,22 @@
+{% extends 'layout.html' %}
+
+{% block title %}Список опросов{% endblock %}
+
+{% block content %}
+	<div class='features'>
+		<h1>Список доступных опросов</h1>
+		{% if questionnaires %}
+			{% for el in questionnaires %}
+				<div align="justify" class='alert alert-warning' align="justify">
+					<h5>{{ el.title }}</h5>
+					<div align="justify">{{ el.text }}</div>
+					<br><a href="{% url 'quest-pass' el.id %}" class="btn btn-danger">Пройти опрос</a></br>
+				</div>
+			{% endfor %}
+		{% else %}
+			<p>Нет текущих опросов!</p>
+		{% endif %}
+		
+		<a href="{% url 'home' %}" class="btn btn-warning">На главную</a>
+	</div>
+{% endblock %}

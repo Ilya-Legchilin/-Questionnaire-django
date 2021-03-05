@@ -1,0 +1,109 @@
+body {
+	background: #2c2c2c;
+}
+
+aside {
+	float: left;
+	background: #181818;
+	width: 25%;
+	padding: 2.5%;
+	height: 100vh;
+	color: #fff;
+	border-right: 5px solid #4d4d4d;
+	position: fixed;
+}
+
+
+aside img {
+	width: 80px;
+	float: left;
+}
+
+
+aside .logo {
+	font-size: 20px;
+	margin-left: 2px;
+	font-weight:  bold;
+	position: relative;
+}
+
+
+aside h3 {
+	margin-top: 100px;
+	margin-left: 10px;
+}
+
+aside ul {
+	list-style: none;
+}
+
+
+aside ul li {
+	top: -100px;
+	color: #fff;
+	display: block;
+	margin-top: 20px;
+	margin-left: -30px;
+	transition: transform .6s ease;
+}
+
+
+aside ul li:hover, aside ul a:hover {
+	color: #eb5959;
+	text-decoration: none;
+	transform: scale(1.02);
+}
+
+
+main .features {
+	float: left;
+	color: #fff;
+	margin-top: 30px;
+	margin-left: 320px;
+	text-align: center;
+	width: 70%
+}
+
+
+main .features h1 {font-size: 50px;}
+main .features p {
+	max-width: 500px;
+	margin-left: 190px;
+}
+
+
+list .features h1 {
+	float: left;
+	margin-left: 100px;
+	font-size: 40px;
+	max-width: 50px;
+}
+
+
+list .layer1 p {
+	font-size: 10px;
+}
+
+
+.alert-warning {
+	float: left;
+	clear: both;
+	width: 500px;
+	margin: 20px 34%;
+	text-align: left;
+	margin-bottom: 2px;
+	margin-left: 200px;
+}
+
+
+.btn-warning {
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+
+
+pass .features p {
+	width: 500px;
+	font-size: 10px;
+}
+
