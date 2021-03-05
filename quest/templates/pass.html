@@ -10,20 +10,21 @@
 		<p align='left'>Начало {{ quest.start }}</p>
 		<p align='left'>Конец {{ quest.finish }}</p>
 		<form action='/receive_record' method="post">
-			{% csrf_token %}
+			{% csrf_token %} 
 			<input type='text' align='center' name='user_id' placeholder='Введите идентификатор' class='form-control' style="width: 400px; margin-left: 188px;" /></br>
 			<input name='count_of_questions' value="{{ list_of_questions|length }}"  hidden>
 			{% for element in list_of_questions %}
 				<h4 align='left' style="margin-left: 188px;">{{ element.0 }}</h4>
+				<input name='{{ forloop.counter }}' value="{{ element.0 }}"  hidden>
 				{% if not element.1 %}
-					<br align='center'><input type='text' placeholder='Ваш ответ' class='form-control' style="width: 400px; margin-left: 188px; box-sizing: border-box;" /></br></br>
+					<br align='center'><input type='text' name="{{ element.0 }}" placeholder='Ваш ответ' class='form-control' style="width: 400px; margin-left: 188px; box-sizing: border-box;" /></br></br>
 				{% else %}
 					{% for a in element.1 %}
 						{% if element.0.question_category == 'CS' %}
-							<p align='left'><input type="checkbox" align='left' name="{{ element.1 }}">{{ a }}</input></p>
+							<p align='left'><input type="checkbox" name="{{ a }}" align='left' name="{{ element.1 }}">{{ a }}</input></p>
 						{% endif %}
 						{% if element.0.question_category == 'MC' %}
-							<p align='left'><input type="radio" align='left' name="{{ element.1 }}">{{ a }}</input></p>
+							<p align='left'><input type="radio" name="{{ a }}" align='left' name="{{ element.1 }}">{{ a }}</input></p>
 						{% endif %}
 					{% endfor %}
 				{% endif %}

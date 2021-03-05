@@ -26,11 +26,19 @@ def quest_pass(request, pk):
 
 
 def receive_record(request):
-    record = Record()
-    record.number_of_questions = request.POST.get("count_of_questions")
-    record.user_id =  request.POST.get("user_id")
-    print('user_id ',  record.user_id)
-    print('number of questions ',  record.number_of_questions)
+    a = request.POST.items()
+    for i in a:
+        print(i)
+    #record = Record()
+    #record.number_of_questions = int(request.POST.get("count_of_questions"))
+    #record.user_id =  request.POST.get("user_id")
+    #for i in range(1, record.number_of_questions + 1):
+    #    index = str(i)
+    #    temp_question = request.POST.get("{}".format(index))
+    #    print("Вопрос номер ", i, temp_question)
+    #    index = "-" + index
+    #    temp_answer = request.POST.get("{}".format(index))
+    #    print("Ответ номер ", i, temp_answer)
     return HttpResponse("something happend")
     
     
