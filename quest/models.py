@@ -49,6 +49,7 @@ class Answer(models.Model):
         
 class Record():
     record_user_id = ''
+    record_number_of_questions = 0
     record_questionnaire = None
     record_dictionary = {}
 

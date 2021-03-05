@@ -12,6 +12,7 @@
 		<form action='/receive_record' method="post">
 			{% csrf_token %}
 			<input type='text' align='center' name='user_id' placeholder='Введите идентификатор' class='form-control' style="width: 400px; margin-left: 188px;" /></br>
+			<input name='count_of_questions' value="{{ list_of_questions|length }}"  hidden>
 			{% for element in list_of_questions %}
 				<h4 align='left' style="margin-left: 188px;">{{ element.0 }}</h4>
 				{% if not element.1 %}

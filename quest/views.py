@@ -27,5 +27,10 @@ def quest_pass(request, pk):
 
 def receive_record(request):
     record = Record()
-    record.record_user_id = request.POST.get("user_id")
+    record.number_of_questions = request.POST.get("count_of_questions")
+    record.user_id =  request.POST.get("user_id")
+    print('user_id ',  record.user_id)
+    print('number of questions ',  record.number_of_questions)
     return HttpResponse("something happend")
+    
+    
