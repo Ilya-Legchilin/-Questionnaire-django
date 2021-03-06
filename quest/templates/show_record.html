@@ -1,0 +1,17 @@
+{% extends 'layout.html' %}
+
+{% block title %}Детали опроса{% endblock %}
+
+{% block content %}
+	<div class='features'>
+		<h1>Ответы</h1>
+		<h4>{{ record.questionnaire }}</h4>
+		<br>Количество вопросов: {{ record.number_of_questions }}</br>
+		{% for key,value in dictionary.items %}
+			<h6 align='left' style="margin-left: 10px; margin-top: 10px;" />{{ key }}</h6>
+			{% for c in value %}
+				<li align='left' style="margin-left: 30px;" />{{ c }}</li>
+			{% endfor %}
+		{% endfor %}
+	</div>
+{% endblock %}

@@ -6,5 +6,6 @@ urlpatterns = [
    path('quests', views.quests, name='quests'),     
    path('storage', views.storage, name='storage'),
    path('quests/<int:pk>/', views.quest_pass, name='quest-pass'),
-   path('receive_record', views.receive_record, name='receive-record')
+   path('receive_record', views.receive_record, name='receive-record'),
+   path('show_record', views.show_record, name='show-record')
 ]

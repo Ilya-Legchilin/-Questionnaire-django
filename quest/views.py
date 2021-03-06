@@ -26,19 +26,46 @@ def quest_pass(request, pk):
 
 
 def receive_record(request):
-    a = request.POST.items()
-    for i in a:
-        print(i)
-    #record = Record()
-    #record.number_of_questions = int(request.POST.get("count_of_questions"))
-    #record.user_id =  request.POST.get("user_id")
-    #for i in range(1, record.number_of_questions + 1):
-    #    index = str(i)
-    #    temp_question = request.POST.get("{}".format(index))
-    #    print("Вопрос номер ", i, temp_question)
-    #    index = "-" + index
-    #    temp_answer = request.POST.get("{}".format(index))
-    #    print("Ответ номер ", i, temp_answer)
-    return HttpResponse("something happend")
+    received_data = request.POST.items()
+    data = []
+    for i in received_data:
+        data.append(i)   
+    record = Record()
+    
+    record.user_id = data[1][1]
+    record.questionnaire = data[3][1]
+    record.number_of_questions = data[2][1]
+    dictionary = {}
+    j = 0
+    temp_key = 0
+    for i in range(4, len(data)):
+        temp_tuple = data[i]
+        try:
+            a = int(temp_tuple[0])
+        except ValueError:  
+            if temp_tuple[1] == 'on':
+                dictionary[temp_key].append(temp_tuple[0])
+            else:
+                dictionary[temp_key].append(temp_tuple[1])
+        else:
+            if not dictionary.get(temp_tuple[1]):
+                dictionary[temp_tuple[1]] = []
+                temp_key = temp_tuple[1]  
+    record.dictionary = repr(dictionary)
+    record.save()
+    return render(request, 'thank.html')
+    
+    
+def show_record(request):
+    uid = request.POST.get("special_key")
+    record = None
+    for temp in Record.objects.all():
+        if uid == temp.user_id:
+            record = temp
+    if record == None:
+        return render(request, 'not_found.html')
+    else:
+        dictionary = eval(record.dictionary)
+        return render(request, 'show_record.html', {'record': record, 'dictionary': dictionary})
     
     

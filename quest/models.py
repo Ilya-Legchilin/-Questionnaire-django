@@ -47,11 +47,11 @@ class Answer(models.Model):
         verbose_name_plural = 'Ответы'
         
         
-class Record():
-    record_user_id = ''
-    record_number_of_questions = 0
-    record_questionnaire = None
-    record_dictionary = {}
+class Record(models.Model):
+    user_id = models.CharField('Айди', max_length=250, null=False, default=None, blank=False)
+    questionnaire = models.CharField('Название', max_length=250, null=True, default=None, blank=False)
+    number_of_questions = models.CharField('Количество question', max_length=250, null=True, default=None, blank=False)
+    dictionary = models.CharField('Data', max_length=250, null=True, default=None, blank=False)
 
     
     
