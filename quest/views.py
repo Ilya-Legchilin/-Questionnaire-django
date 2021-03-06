@@ -65,7 +65,11 @@ def show_record(request):
     if record == None:
         return render(request, 'not_found.html')
     else:
-        dictionary = eval(record.dictionary)
-        return render(request, 'show_record.html', {'record': record, 'dictionary': dictionary})
+        try:
+            dictionary = eval(record.dictionary)
+        except TypeError:
+            return render(request, 'not_found.html')
+        else:
+            return render(request, 'show_record.html', {'record': record, 'dictionary': dictionary})
     
     
